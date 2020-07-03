@@ -5,7 +5,7 @@ import { setAuthedUser } from '../actions/authedUser'
 class Login extends Component {
 
   state = {
-    selectedName: ''
+    selectedName: null
   }
 
   handleChange = (e) => {
@@ -16,7 +16,9 @@ class Login extends Component {
   handleSubmit = (e) => {
     //Setting the User
     e.preventDefault()
-    this.props.dispatch(setAuthedUser(this.state.selectedName))
+    if(this.state.selectedName !== null){
+      this.props.dispatch(setAuthedUser(this.state.selectedName))
+    }
   }
 
   render() {
@@ -27,7 +29,7 @@ class Login extends Component {
         <p>Please sign in to continue</p>
         <form onSubmit={this.handleSubmit} >
         <select onChange={this.handleChange}>
-          <option value="N/A" disabled selected>Select a User</option>
+          <option disabled selected>Select a User</option>
           {this.props.myUsers.map((user) => (
             <option value={user.name}>{user.name}</option>
           ))}
