@@ -1,14 +1,59 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import { setAuthedUser } from '../actions/authedUser'
+import Dashboard from './Dashboard'
 
 class Home extends Component {
-  render(){
-    return(
+
+  state = {
+    selectedName: null
+  }
+
+  handleChange = (e) => {
+    e.preventDefault()
+    this.setState({selectedName: e.target.value})
+  }
+
+  handleSubmit = (e) => {
+    //Setting the User
+    e.preventDefault()
+    if(this.state.selectedName !== null){
+      this.props.dispatch(setAuthedUser(this.state.selectedName))
+    }
+  }
+
+  render() {
+    return (
       <div>
-        <h1>Home</h1>
-      </div>
+        {this.props.logged === true
+          ?  <div>
+              <h2>Welcome to the Would You Rather App!</h2>
+              <p>Please sign in to continue</p>
+              <form onSubmit={this.handleSubmit} >
+              <select onChange={this.handleChange}>
+                <option value='none'>Select a User</option>
+                {this.props.myUsers.map((user) => (
+                  <option key={user.name} value={user.name}>{user.name}</option>
+                ))}
+              </select>
+                <div>
+                  <button type='submit'>
+                    Sign In
+                  </button>
+                </div>
+              </form>
+            </div>
+          : <Dashboard/>}
+        </div>
     )
   }
 }
 
-export default connect()(Home)
+function mapStateToProps ({ users, authedUser }) {
+  return {
+    myUsers: Object.values(users),
+    logged: authedUser === 'none'
+  }
+}
+
+export default connect(mapStateToProps)(Home)
