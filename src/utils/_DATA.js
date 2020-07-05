@@ -130,7 +130,7 @@ export function _getQuestions () {
     setTimeout(() => res({...questions}), 1000)
   })
 }
-
+//When making a new question
 function formatQuestion ({ optionOneText, optionTwoText, author }) {
   return {
     id: generateUID(),
@@ -146,7 +146,7 @@ function formatQuestion ({ optionOneText, optionTwoText, author }) {
     }
   }
 }
-
+//Save a question onces you have it
 export function _saveQuestion (question) {
   return new Promise((res, rej) => {
     const authedUser = question.author;

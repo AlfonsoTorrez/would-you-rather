@@ -1,14 +1,28 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Question from './Question'
 
 class Dashboard extends Component {
   render(){
     return(
       <div>
-        <h1>Dashboard</h1>
+        <ul>
+          {this.props.questionIds.map((id) => (
+            <li key={id}>
+              <Question id={id}/>
+            </li>
+          ))}
+        </ul>
       </div>
     )
   }
 }
 
-export default connect()(Dashboard)
+function mapStateToProps ({ questions }){
+  return{
+    questionIds: Object.keys(questions)
+      .sort((a,b) => questions[b].timestamp - questions[a].timestamp)
+  }
+}
+
+export default connect(mapStateToProps)(Dashboard)
