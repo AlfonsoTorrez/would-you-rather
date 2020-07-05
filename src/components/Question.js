@@ -4,18 +4,20 @@ import { connect } from 'react-redux'
 class Question extends Component {
   render(){
     return(
-      <div>
+      <span>
+        <img src={this.props.myUsers[this.props.question.author].avatarURL} alt={this.props.question.author} width="100" height="100"/>
         <p>{this.props.question.author}</p>
-      </div>
+      </span>
     )
   }
 }
 
-function mapStateToProps ({questions}, { id }) {
+function mapStateToProps ({ users, questions}, { id }) {
   const question = questions[id]
   console.log(question)
   return {
-    question
+    question,
+    myUsers: users
   }
 }
 
