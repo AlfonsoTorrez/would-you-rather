@@ -1,14 +1,25 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
+import Login from './Login'
 
 class NewQuestion extends Component {
   render(){
     return(
       <div>
-        <h1>New Question</h1>
+        {this.props.logged === true
+          ? <Login/>
+          : <div>
+              <h1>New Question</h1>
+            </div>}
       </div>
     )
   }
 }
 
-export default connect()(NewQuestion)
+function mapStateToProps ({ authedUser }) {
+  return {
+    logged: authedUser === 'none'
+  }
+}
+
+export default connect(mapStateToProps)(NewQuestion)
