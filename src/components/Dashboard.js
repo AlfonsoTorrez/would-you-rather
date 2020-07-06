@@ -5,7 +5,7 @@ import Question from './Question'
 class Dashboard extends Component {
   render(){
     return(
-      <div>
+      <div className="center">
         <ul>
           {this.props.questionIds.map((id) => (
             <li key={id}>

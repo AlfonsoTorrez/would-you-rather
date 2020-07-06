@@ -22,7 +22,7 @@ class Login extends Component {
 
   render(){
     return(
-      <div>
+      <div className="center">
           <h2>Welcome to the Would You Rather App!</h2>
           <p>Please sign in to continue</p>
           <form onSubmit={this.handleSubmit} >
@@ -33,7 +33,7 @@ class Login extends Component {
             ))}
           </select>
             <div>
-              <button type='submit'>
+              <button className="btn" type='submit'>
                 Sign In
               </button>
             </div>

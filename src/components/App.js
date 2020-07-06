@@ -5,6 +5,7 @@ import { handleInitialData } from '../actions/shared'
 import Home from './Home'
 import NewQuestion from './NewQuestion'
 import LeaderBoard from './LeaderBoard'
+import QuestionPage from './QuestionPage'
 import Nav from './Nav'
 import LoadingBar from 'react-redux-loading'
 
@@ -17,7 +18,7 @@ class App extends Component {
       <Router>
         <Fragment>
           <LoadingBar/>
-          <div>
+          <div className='container' >
             <Nav/>
             {this.props.myUser === true
               ? null
@@ -25,6 +26,7 @@ class App extends Component {
                   <Route path='/' exact component={Home} />
                   <Route path='/new' exact component={NewQuestion} />
                   <Route path='/leader' exact component={LeaderBoard} />
+                  <Route path='/question/:id' exact component={QuestionPage} />
                 </div>}
           </div>
         </Fragment>

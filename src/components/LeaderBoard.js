@@ -5,7 +5,7 @@ import Login from './Login'
 class LeaderBoard extends Component {
   render(){
     return(
-      <div>
+      <div className="center">
         {this.props.logged === true
           ? <Login/>
           : <div>

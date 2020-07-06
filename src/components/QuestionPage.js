@@ -1,15 +1,12 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Dashboard from './Dashboard'
-import Login from './Login'
 
-class Home extends Component {
+
+class QuestionPage extends Component {
   render() {
     return (
       <div className="center">
-        {this.props.logged === true
-          ? <Login/>
-          : <Dashboard/>}
+        <h1>Question Page</h1>
       </div>
     )
   }
@@ -21,4 +18,4 @@ function mapStateToProps ({ authedUser }) {
   }
 }
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps)(QuestionPage)
