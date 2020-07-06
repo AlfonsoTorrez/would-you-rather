@@ -10,18 +10,16 @@ class Question extends Component {
       return <p>This Tweet doesn't existd</p>
     }
 
-    const {
-      id, author, timestamp, optionOne, optionTwo
-    } = question
+
     return(
-      <Link to={`/question/${id}`}>
+      <Link to={`/question/${this.props.questionID}`}>
         <div className="card">
           <div className="content">
             <h4><b>{this.props.name} asks:</b></h4>
           </div>
-            <img className="avatar" src={this.props.myUsers[this.props.userID].avatarURL} alt={this.props.name} width="100" height="100"/>
+            <img className="avatar" src={this.props.avatarURL} alt={this.props.name} width="100" height="100"/>
             <h4><b>Would You Rather?</b></h4>
-            <p>{this.props.question.optionOne.text} or ....</p>
+            <p>{this.props.optionOneText} or ....</p>
             <button className="btn">View Poll</button>
         </div>
       </Link>
@@ -30,12 +28,11 @@ class Question extends Component {
 }
 
 function mapStateToProps ({ users, questions, authedUser}, { id }) {
-  const question = questions[id]
   return {
-    question,
-    myUsers: users,
-    name: users[question.author].name,
-    userID: users[question.author].id
+    questionID: questions[id].id,
+    name: users[questions[id].author].name,
+    avatarURL: users[questions[id].author].avatarURL,
+    optionOneText: questions[id].optionOne.text
   }
 }
 

@@ -1,16 +1,20 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Login from './Login'
 
 class NewQuestion extends Component {
+
+  componentDidMount() {
+    if(this.props.logged === true){
+      this.props.history.push(`/`)
+    }
+  }
+
   render(){
     return(
       <div className="center">
-        {this.props.logged === true
-          ? <Login/>
-          : <div>
-              <h1>New Question</h1>
-            </div>}
+        <div>
+          <h1>New Question</h1>
+        </div>
       </div>
     )
   }

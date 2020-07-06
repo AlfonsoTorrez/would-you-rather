@@ -1,16 +1,19 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
-import Login from './Login'
 
 class LeaderBoard extends Component {
+  componentDidMount() {
+    if(this.props.logged === true){
+      this.props.history.push(`/`)
+    }
+  }
+
   render(){
     return(
       <div className="center">
-        {this.props.logged === true
-          ? <Login/>
-          : <div>
-              <h1>Leader Board</h1>
-            </div>}
+        <div>
+          <h1>Leader Board</h1>
+        </div>
       </div>
     )
   }

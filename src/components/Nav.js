@@ -2,11 +2,12 @@ import React, { Component, Fragment } from 'react'
 import { NavLink } from 'react-router-dom'
 import { connect } from 'react-redux'
 import { setAuthedUser } from '../actions/authedUser'
+import { withRouter } from 'react-router-dom'
 
 class Nav extends Component {
   handleLogout = () => {
-    console.log("logout!")
     this.props.dispatch(setAuthedUser('none'))
+    this.props.history.push(`/`)
   }
 
   render(){
@@ -19,7 +20,7 @@ class Nav extends Component {
               </NavLink>
             </li>
             <li>
-              <NavLink to='/new' activeClassName='active'>
+              <NavLink to='/add' activeClassName='active'>
                 New Question
               </NavLink>
             </li>
@@ -60,4 +61,4 @@ function mapStateToProps ({ authedUser, users }) {
   }
 }
 
-export default connect(mapStateToProps)(Nav)
+export default withRouter(connect(mapStateToProps)(Nav))
